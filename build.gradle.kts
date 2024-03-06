@@ -9,7 +9,7 @@ plugins {
 }
 
 group = "changchanghwang"
-version = "0.0.1-SNAPSHOT"
+version = "0.0.1"
 
 java {
 	sourceCompatibility = JavaVersion.VERSION_21
@@ -46,4 +46,12 @@ tasks.withType<KotlinCompile> {
 
 tasks.withType<Test> {
 	useJUnitPlatform()
+}
+
+tasks.getByName("bootJar") {
+    enabled = true
+}
+
+tasks.getByName("jar") {
+	enabled = false
 }
