@@ -6,7 +6,7 @@ plugins {
     kotlin("jvm") version "1.9.22"
     kotlin("plugin.spring") version "1.9.22"
     kotlin("plugin.jpa") version "1.9.22"
-    id("org.jlleitschuh.gradle.ktlint") version "<current_version>"
+    id("org.jlleitschuh.gradle.ktlint") version "12.1.0"
 }
 
 group = "changchanghwang"
@@ -36,6 +36,7 @@ dependencies {
     runtimeOnly("com.mysql:mysql-connector-j")
     annotationProcessor("org.projectlombok:lombok")
     testImplementation("org.springframework.boot:spring-boot-starter-test")
+    implementation("org.mindrot:jbcrypt:0.4")
 }
 
 tasks.withType<KotlinCompile> {
