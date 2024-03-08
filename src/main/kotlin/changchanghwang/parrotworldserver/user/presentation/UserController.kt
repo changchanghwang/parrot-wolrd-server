@@ -1,7 +1,6 @@
 package changchanghwang.parrotworldserver.user.presentation
 
 import changchanghwang.parrotworldserver.user.application.UserService
-import changchanghwang.parrotworldserver.user.domain.User
 import changchanghwang.parrotworldserver.user.dto.UserDto
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
@@ -17,7 +16,7 @@ class UserController(private val userService: UserService) {
     @PostMapping("/sign-up")
     fun signUp(
         @RequestBody signUpRequest: UserDto.SignUpRequest,
-    ): User {
-        return userService.signUp(signUpRequest)
+    ) {
+        userService.signUp(signUpRequest)
     }
 }

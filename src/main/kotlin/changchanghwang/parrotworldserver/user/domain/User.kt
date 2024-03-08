@@ -18,6 +18,9 @@ class User private constructor(
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
 
+    @Column(name = "refreshToken", nullable = true)
+    var refreshToken: String? = null
+
     companion object {
         fun of(
             email: String,

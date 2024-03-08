@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 
 @Service
 class UserService(private val userRepository: UserRepository, private val validateUserService: ValidateUserService) {
-    fun signUp(signUpRequest: UserDto.SignUpRequest): User {
+    fun signUp(signUpRequest: UserDto.SignUpRequest) {
         val user =
             User.of(
                 signUpRequest.email,
@@ -17,8 +17,7 @@ class UserService(private val userRepository: UserRepository, private val valida
                 signUpRequest.nickName,
                 validateUserService,
             )
-        return userRepository.save(
-            user,
-        )
+
+        val savedUser = userRepository.save(user)
     }
 }
