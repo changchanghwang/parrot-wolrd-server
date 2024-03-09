@@ -6,7 +6,6 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
-import org.mindrot.jbcrypt.BCrypt
 
 @Entity
 class User private constructor(
@@ -29,8 +28,7 @@ class User private constructor(
             nickName: String,
             validateUserService: ValidateUserService,
         ): User {
-            validateUserService.validateSignUp(email, password, passwordConfirm)
-            val hashedPassword = BCrypt.hashpw(password, BCrypt.gensalt())
+            val hashedPassword = validateUserService.validateSignUp(email, nickName, password, passwordConfirm)
             return User(email, hashedPassword, nickName)
         }
     }

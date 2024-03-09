@@ -1,10 +1,11 @@
 package changchanghwang.parrotworldserver
 
-// import org.springframework.boot.test.context.SpringBootTest
+import org.junit.jupiter.api.Test
+import org.springframework.boot.test.context.SpringBootTest
 
-// @SpringBootTest
+@SpringBootTest
 class ParrotWorldServerApplicationTests {
-//  @Test
+    @Test
     fun contextLoads() {
     }
 }

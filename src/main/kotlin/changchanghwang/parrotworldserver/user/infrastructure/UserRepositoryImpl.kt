@@ -13,4 +13,9 @@ class UserRepositoryImpl(private val userJpaRepository: UserJpaRepository) : Use
         val user = userJpaRepository.findByEmail(email)
         return user != null
     }
+
+    override fun checkByNickName(nickName: String): Boolean {
+        val user = userJpaRepository.findByNickName(nickName)
+        return user != null
+    }
 }
