@@ -7,5 +7,5 @@ import org.springframework.boot.runApplication
 class ParrotWorldServerApplication
 
 fun main(args: Array<String>) {
-	runApplication<ParrotWorldServerApplication>(*args)
+    runApplication<ParrotWorldServerApplication>(*args)
 }
