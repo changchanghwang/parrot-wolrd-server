@@ -24,11 +24,10 @@ class User private constructor(
         fun of(
             email: String,
             password: String,
-            passwordConfirm: String,
             nickName: String,
             validateUserService: ValidateUserService,
         ): User {
-            val hashedPassword = validateUserService.validateSignUp(email, nickName, password, passwordConfirm)
+            val hashedPassword = validateUserService.validateSignUp(email, nickName, password)
             return User(email, hashedPassword, nickName)
         }
     }

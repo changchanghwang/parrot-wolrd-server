@@ -13,11 +13,10 @@ class UserService(private val userRepository: UserRepository, private val valida
             User.of(
                 signUpRequest.email,
                 signUpRequest.password,
-                signUpRequest.passwordConfirm,
                 signUpRequest.nickName,
                 validateUserService,
             )
 
-        val savedUser = userRepository.save(user)
+        userRepository.save(user)
     }
 }

@@ -6,6 +6,4 @@ class BadRequest(message: String, errorMessage: String?) : RestException(
     HttpStatus.BAD_REQUEST,
     message,
     errorMessage,
-) {
-    constructor(message: String) : this(message, null)
-}
+)

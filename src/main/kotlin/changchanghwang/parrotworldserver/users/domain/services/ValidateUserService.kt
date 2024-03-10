@@ -11,7 +11,6 @@ class ValidateUserService(private val userRepository: UserRepository, private va
         email: String,
         nickName: String,
         password: String,
-        passwordConfirm: String,
     ): String {
         val isExistEmail = userRepository.checkByEmail(email)
         val isExistNickName = userRepository.checkByNickName(nickName)
@@ -20,10 +19,6 @@ class ValidateUserService(private val userRepository: UserRepository, private va
         }
         if (isExistNickName) {
             throw BadRequest("NickName already exists.", "해당 닉네임으로 가입할 수 없습니다.")
-        }
-
-        if (password != passwordConfirm) {
-            throw BadRequest("Password and password confirm are not same.", "비밀번호가 비밀번호 확인과 서로 다릅니다.")
         }
 
         return authService.hashPassword(password)
