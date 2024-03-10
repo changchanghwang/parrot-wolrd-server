@@ -23,11 +23,11 @@ class UserTest {
         fun canCreateUser() {
             // given
             given(
-                validateUserService.validateSignUp("test@test.com", "testNickName", "testPassword", "testPassword"),
+                validateUserService.validateSignUp("test@test.com", "testNickName", "testPassword"),
             ).willReturn("hashedTestPassword")
 
             // when
-            val user = User.of("test@test.com", "testPassword", "testPassword", "testNickName", validateUserService)
+            val user = User.of("test@test.com", "testPassword", "testNickName", validateUserService)
 
             // then
             Assertions.assertThat(user.email).isEqualTo("test@test.com")

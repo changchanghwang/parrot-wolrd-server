@@ -39,7 +39,6 @@ class ValidateUserServiceTest {
                     "test@test.com",
                     "testNickName",
                     "testPassword",
-                    "testPassword",
                 )
             }.isInstanceOf(BadRequest::class.java).hasMessage("Email already exists.")
         }
@@ -57,27 +56,26 @@ class ValidateUserServiceTest {
                     "test@test.com",
                     "testNickName",
                     "testPassword",
-                    "testPassword",
                 )
             }.isInstanceOf(BadRequest::class.java).hasMessage("NickName already exists.")
         }
 
         @Test
-        @DisplayName("비밀번호와 비밀번호 확인 입력값이 다르면 에러를 던진다.")
-        fun errorWhenPasswordDifferent() {
+        @DisplayName("validation을 통과하면 password를 hash해서 반환한다")
+        fun returnHashedPassword() {
             // given
             given(userRepository.checkByEmail("test@test.com")).willReturn(false)
             given(userRepository.checkByNickName("testNickName")).willReturn(false)
+            given(authService.hashPassword("testPassword")).willReturn("hashedTestPassword")
 
             // then
-            Assertions.assertThatThrownBy {
+            Assertions.assertThat(
                 validateUserService.validateSignUp(
                     "test@test.com",
                     "testNickName",
                     "testPassword",
-                    "testPassword123",
-                )
-            }.isInstanceOf(BadRequest::class.java).hasMessage("Password and password confirm are not same.")
+                ),
+            ).isEqualTo("hashedTestPassword")
         }
     }
 }
