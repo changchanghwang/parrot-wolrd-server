@@ -1,7 +1,7 @@
-package changchanghwang.parrotworldserver.user.presentation
+package changchanghwang.parrotworldserver.users.presentation
 
-import changchanghwang.parrotworldserver.user.application.UserService
-import changchanghwang.parrotworldserver.user.dto.UserDto
+import changchanghwang.parrotworldserver.users.application.UserService
+import changchanghwang.parrotworldserver.users.dto.UserDto
 import org.springframework.http.HttpStatus
 import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
