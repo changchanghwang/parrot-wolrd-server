@@ -1,6 +1,6 @@
-package changchanghwang.parrotworldserver.user.infrastructure
+package changchanghwang.parrotworldserver.users.infrastructure
 
-import changchanghwang.parrotworldserver.user.domain.User
+import changchanghwang.parrotworldserver.users.domain.User
 
 interface UserRepository {
     fun save(user: User): User

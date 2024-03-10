@@ -1,4 +1,4 @@
-package changchanghwang.parrotworldserver.user.dto
+package changchanghwang.parrotworldserver.users.dto
 
 class UserDto {
     data class SignUpRequest(

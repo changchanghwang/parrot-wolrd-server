@@ -1,9 +1,9 @@
-package changchanghwang.parrotworldserver.user.application
+package changchanghwang.parrotworldserver.users.application
 
-import changchanghwang.parrotworldserver.user.domain.User
-import changchanghwang.parrotworldserver.user.domain.services.ValidateUserService
-import changchanghwang.parrotworldserver.user.dto.UserDto
-import changchanghwang.parrotworldserver.user.infrastructure.UserRepository
+import changchanghwang.parrotworldserver.users.domain.User
+import changchanghwang.parrotworldserver.users.domain.services.ValidateUserService
+import changchanghwang.parrotworldserver.users.dto.UserDto
+import changchanghwang.parrotworldserver.users.infrastructure.UserRepository
 import org.springframework.stereotype.Service
 
 @Service

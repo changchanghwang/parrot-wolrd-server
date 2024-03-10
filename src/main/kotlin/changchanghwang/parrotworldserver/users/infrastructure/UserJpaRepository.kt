@@ -1,6 +1,6 @@
-package changchanghwang.parrotworldserver.user.infrastructure
+package changchanghwang.parrotworldserver.users.infrastructure
 
-import changchanghwang.parrotworldserver.user.domain.User
+import changchanghwang.parrotworldserver.users.domain.User
 import org.springframework.data.jpa.repository.JpaRepository
 
 interface UserJpaRepository : JpaRepository<User, Long> {

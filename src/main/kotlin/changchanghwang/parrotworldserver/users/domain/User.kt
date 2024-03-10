@@ -1,6 +1,6 @@
-package changchanghwang.parrotworldserver.user.domain
+package changchanghwang.parrotworldserver.users.domain
 
-import changchanghwang.parrotworldserver.user.domain.services.ValidateUserService
+import changchanghwang.parrotworldserver.users.domain.services.ValidateUserService
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue

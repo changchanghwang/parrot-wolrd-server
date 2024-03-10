@@ -1,7 +1,8 @@
-package changchanghwang.parrotworldserver.user.domain.services
+package changchanghwang.parrotworldserver.users.domain.services
 
 import changchanghwang.parrotworldserver.common.auth.AuthService
-import changchanghwang.parrotworldserver.user.infrastructure.UserRepository
+import changchanghwang.parrotworldserver.common.exceptions.BadRequest
+import changchanghwang.parrotworldserver.users.infrastructure.UserRepository
 import org.springframework.stereotype.Service
 
 @Service
@@ -15,11 +16,14 @@ class ValidateUserService(private val userRepository: UserRepository, private va
         val isExistEmail = userRepository.checkByEmail(email)
         val isExistNickName = userRepository.checkByNickName(nickName)
         if (isExistEmail) {
-            throw Exception("Email already exists")
+            throw BadRequest("Email already exists.", "해당 이메일로 가입할 수 없습니다.")
+        }
+        if (isExistNickName) {
+            throw BadRequest("NickName already exists.", "해당 닉네임으로 가입할 수 없습니다.")
         }
 
         if (password != passwordConfirm) {
-            throw Exception("Password and password confirm are not same")
+            throw BadRequest("Password and password confirm are not same.", "비밀번호가 비밀번호 확인과 서로 다릅니다.")
         }
 
         return authService.hashPassword(password)
