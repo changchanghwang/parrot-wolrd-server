@@ -12,9 +12,11 @@ spring:
     open-in-view: true
     hibernate:
       ddl-auto: create
+      naming:
+          physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
     properties:
       hibernate:
-        show_sql: false
+        show_sql: true
         format_sql: true
         highlight_sql: true
   logging:
