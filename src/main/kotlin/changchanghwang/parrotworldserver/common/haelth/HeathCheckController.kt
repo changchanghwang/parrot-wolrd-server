@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.RestController
 class HeathCheckController {
     @GetMapping("/ping")
     fun ping(): String {
-        println("hi")
         return "pong"
     }
 }
