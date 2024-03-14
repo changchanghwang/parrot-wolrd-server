@@ -1,12 +1,6 @@
-<<<<<<<< Updated upstream:src/test/kotlin/changchanghwang/parrotworldserver/user/domain/UserTest.kt
-package changchanghwang.parrotworldserver.user.domain
-
-import changchanghwang.parrotworldserver.user.domain.services.ValidateUserService
-========
 package changchanghwang.parrotworldserver.members.domain
 
 import changchanghwang.parrotworldserver.members.domain.services.ValidateMemberService
->>>>>>>> Stashed changes:src/test/kotlin/changchanghwang/parrotworldserver/members/domain/MemberTest.kt
 import org.assertj.core.api.Assertions
 import org.junit.jupiter.api.Nested
 import org.junit.jupiter.api.Test
