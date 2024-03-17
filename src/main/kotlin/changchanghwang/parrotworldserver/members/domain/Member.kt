@@ -43,10 +43,9 @@ class Member private constructor(
     fun validatePassword(
         password: String,
         validateMemberService: ValidateMemberService,
-    )  {
-        if (!validateMemberService.comparePassword(password, this.password))
-            {
-                throw BadRequest("Invalid password", "이메일 또는 패스워드가 올바르지 않습니다.")
-            }
+    ) {
+        if (!validateMemberService.comparePassword(password, this.password)) {
+            throw BadRequest("Invalid password", "이메일 또는 패스워드가 올바르지 않습니다.")
+        }
     }
 }
