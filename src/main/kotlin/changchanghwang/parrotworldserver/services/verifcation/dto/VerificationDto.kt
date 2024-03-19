@@ -11,4 +11,8 @@ class VerificationDto {
     data class StartResponse(
         val id: Long,
     )
+
+    data class ConfirmRequestBody(
+        val code: String,
+    )
 }

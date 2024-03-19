@@ -7,6 +7,7 @@ import changchanghwang.parrotworldserver.services.verifcation.domain.Verificatio
 import changchanghwang.parrotworldserver.services.verifcation.domain.VerificationType
 import changchanghwang.parrotworldserver.services.verifcation.dto.VerificationDto
 import changchanghwang.parrotworldserver.services.verifcation.infrastructure.VerificationRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 import org.thymeleaf.TemplateEngine
 import org.thymeleaf.context.Context
@@ -18,6 +19,7 @@ class VerificationService(
     private val templateEngine: TemplateEngine,
     private val memberRepository: MemberRepository,
 ) {
+    @Transactional
     fun start(startRequestDto: VerificationDto.StartRequest): VerificationDto.StartResponse {
         if (startRequestDto.type == VerificationType.SIGNUP) {
             if (memberRepository.checkByEmail(startRequestDto.email)) {
@@ -33,6 +35,19 @@ class VerificationService(
         send(verification) // TODO: 추후 event 처리로 변경
 
         return VerificationDto.StartResponse(savedVerification.id!!)
+    }
+
+    @Transactional
+    fun confirm(
+        id: Long,
+        confirmRequestDto: VerificationDto.ConfirmRequestBody,
+    ) {
+        val verification =
+            verificationRepository.findOneOrFail(id)
+
+        verification.verify(confirmRequestDto.code)
+
+        verificationRepository.save(verification)
     }
 
     private fun send(verification: Verification) {

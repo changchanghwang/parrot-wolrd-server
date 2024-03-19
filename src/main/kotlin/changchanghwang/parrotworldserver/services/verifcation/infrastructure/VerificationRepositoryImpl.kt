@@ -10,4 +10,8 @@ class VerificationRepositoryImpl(
     override fun save(verification: Verification): Verification {
         return verificationJpaRepository.save(verification)
     }
+
+    override fun findOneOrFail(id: Long): Verification {
+        return verificationJpaRepository.findById(id).orElseThrow()
+    }
 }

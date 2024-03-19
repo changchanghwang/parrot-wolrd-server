@@ -6,6 +6,7 @@ import changchanghwang.parrotworldserver.services.members.domain.Member
 import changchanghwang.parrotworldserver.services.members.domain.services.ValidateMemberService
 import changchanghwang.parrotworldserver.services.members.dto.MemberDto
 import changchanghwang.parrotworldserver.services.members.infrastructure.MemberRepository
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
 @Service
@@ -14,6 +15,7 @@ class MemberService(
     private val validateMemberService: ValidateMemberService,
     private val authService: AuthService,
 ) {
+    @Transactional
     fun signUp(signUpRequest: MemberDto.SignUpRequest) {
         val member =
             Member.of(
@@ -26,6 +28,7 @@ class MemberService(
         memberRepository.save(member)
     }
 
+    @Transactional
     fun signIn(signInRequest: MemberDto.SignInRequest): MemberDto.SignInResponse {
         val member =
             memberRepository.findByEmail(signInRequest.email)

@@ -1,6 +1,7 @@
 package changchanghwang.parrotworldserver.services.verifcation.domain
 
 import changchanghwang.parrotworldserver.common.ddd.Aggregate
+import changchanghwang.parrotworldserver.common.exceptions.BadRequest
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
@@ -16,11 +17,13 @@ class Verification private constructor(
     @Column(nullable = false) val expiredAt: Date,
     @Column(nullable = false) val sentAt: Date,
     @Column(nullable = false) val type: VerificationType,
-    @Column(nullable = true) val verifiedAt: Date? = null,
 ) : Aggregate() {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     var id: Long? = null
+
+    @Column(nullable = true)
+    var verifiedAt: Date? = null
 
     companion object {
         fun of(
@@ -31,5 +34,15 @@ class Verification private constructor(
             val expiredAt = Date(System.currentTimeMillis() + 3 * 60 * 1000)
             return Verification(email, code, expiredAt, Date(), type)
         }
+    }
+
+    fun verify(code: String) {
+        if (this.code != code) {
+            throw BadRequest("Invalid code", "인증 코드가 올바르지 않습니다.")
+        }
+        if (this.expiredAt < Date()) {
+            throw BadRequest("Expired code", "인증 코드가 만료되었습니다.")
+        }
+        this.verifiedAt = Date()
     }
 }

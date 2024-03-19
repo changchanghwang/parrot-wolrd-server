@@ -4,4 +4,6 @@ import changchanghwang.parrotworldserver.services.verifcation.domain.Verificatio
 
 interface VerificationRepository {
     fun save(verification: Verification): Verification
+
+    fun findOneOrFail(id: Long): Verification
 }
