@@ -5,6 +5,8 @@ import changchanghwang.parrotworldserver.common.exceptions.BadRequest
 import changchanghwang.parrotworldserver.services.members.domain.services.ValidateMemberService
 import jakarta.persistence.Column
 import jakarta.persistence.Entity
+import jakarta.persistence.EnumType
+import jakarta.persistence.Enumerated
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
@@ -22,7 +24,8 @@ class Member private constructor(
     @Column(nullable = true)
     var refreshToken: String? = null
 
-    @Column(nullable = false)
+    @Column(nullable = false, columnDefinition = "varchar(20)")
+    @Enumerated(EnumType.STRING)
     var role: MemberRole = MemberRole.USER
 
     companion object {
