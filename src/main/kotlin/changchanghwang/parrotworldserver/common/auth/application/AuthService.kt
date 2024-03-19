@@ -2,7 +2,7 @@ package changchanghwang.parrotworldserver.common.auth.application
 
 import changchanghwang.parrotworldserver.common.auth.dto.AuthDto
 import changchanghwang.parrotworldserver.common.exceptions.Unauthorized
-import changchanghwang.parrotworldserver.members.infrastructure.MemberRepository
+import changchanghwang.parrotworldserver.services.members.infrastructure.MemberRepository
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.io.Decoders
 import io.jsonwebtoken.security.Keys
@@ -20,7 +20,7 @@ class AuthService(private val memberRepository: MemberRepository) {
     val secretKey: SecretKey =
         Keys.hmacShaKeyFor(
             Decoders.BASE64.decode(
-                "apiwerjngeprjignerpibneripbneipbnepirbnnarfpienrgipernagiperangipjerangpaerngjiea",
+                System.getenv("JWT_SECRET"),
             ),
         )
 
@@ -73,7 +73,6 @@ class AuthService(private val memberRepository: MemberRepository) {
             memberRepository.save(member)
             return RorateOutput(member.id!!, newRefreshToken)
         } catch (e: Exception) {
-            println("여기라고?")
             throw Unauthorized(e.message ?: "Invalid Token", "로그인에 실패하였습니다.")
         }
     }
