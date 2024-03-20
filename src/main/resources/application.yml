@@ -19,11 +19,23 @@ spring:
         show_sql: true
         format_sql: true
         highlight_sql: true
-  logging:
-    pattern:
-      console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
-    level:
-      org:
-        hibernate:
-          SQL: debug
-          type.descriptor.sql: trace
+  mail:
+      host: smtp.gmail.com
+      port: 587
+      username: ${MAIL_HOST}
+      password: ${MAIL_PASSWORD}
+      properties:
+          mail:
+              smtp:
+                  auth: true
+                  timeout: 5000
+                  starttls:
+                      enable: true
+logging:
+  pattern:
+    console: "[%d{HH:mm:ss.SSS}][%-5level][%logger.%method:line%line] - %msg%n"
+  level:
+    org:
+      hibernate:
+        SQL: debug
+        type.descriptor.sql: trace
